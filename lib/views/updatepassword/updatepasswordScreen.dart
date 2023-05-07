@@ -19,34 +19,39 @@ class UpdatePasswordPage extends StatelessWidget {
           children: [
             const SizedBox(height: 50,),
             TextFormField(
+              controller: controller.OldPassword,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Old Password',
               ),
-              onChanged: controller.updateOldPassword,
+
             ),
             const SizedBox(height: 16.0),
             TextFormField(
+              controller: controller.NewPassword,
               obscureText: true,
               decoration: const InputDecoration(
                 labelText: 'New Password',
               ),
-              onChanged: controller.updateNewPassword,
+
             ),
             const SizedBox(height: 16.0),
             TextFormField(
+              controller: controller.ConfirmPassword,
               obscureText: true,
               decoration: const InputDecoration(
                 labelText: 'Confirm Password',
               ),
-              onChanged: controller.updateConfirmPassword,
+
             ),
             const SizedBox(height: 32.0),
             Center(
               child: MaterialButton(
                 minWidth: 380,
                 color: Color(0xFFB97CFC),
-                onPressed: controller.updatePassword,
+                onPressed: (){
+                  controller.updatePassword();
+                },
                 child: Text('Update',style: TextStyle(color: Colors.white),),
               ),
             ),

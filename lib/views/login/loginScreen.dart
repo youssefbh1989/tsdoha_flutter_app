@@ -6,9 +6,9 @@ import '../../controller/loginController.dart';
 import '../home/homeScreen.dart';
 
 class LoginScreen extends StatelessWidget {
-  final controller = Get.put(LoginController());
+  final LoginController controller = Get.put(LoginController());
 
-   LoginScreen({super.key});
+  LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,10 @@ class LoginScreen extends StatelessWidget {
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
-                        child: Text(value,style: TextStyle(color: Colors.black),),
+                        child: Text(
+                          value,
+                          style: TextStyle(color: Colors.black),
+                        ),
                       );
                     }).toList(),
                   );
@@ -53,54 +56,80 @@ class LoginScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
-        color: Colors.white70,
-        padding: EdgeInsets.symmetric(horizontal: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 100,),
-            Image.asset(
-              'assets/imgs/logotsd.png',
-              height: 150,
+      body: SingleChildScrollView(
+        child: Container(
+          color: Colors.white70,
+          padding: EdgeInsets.symmetric(horizontal: 30),
+          child: Form(
+            key: controller.formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 100,
+                ),
+                Image.asset(
+                  'assets/imgs/logotsd.png',
+                  height: 150,
+                ),
+                const SizedBox(height: 40),
+                TextFormField(
+
+                  controller: controller.emailController,
+                  decoration: InputDecoration(
+                    labelText: 'parent_id'.tr,
+                    border: OutlineInputBorder(),
+                  ),
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'required_field'.tr;
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: controller.passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: 'password'.tr,
+                    border: OutlineInputBorder(),
+                  ),
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'required_field'.tr;
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 20),
+                MaterialButton(
+                  minWidth: 380,
+                  color: const Color(0xFFB97CFC),
+                  textColor: Colors.white,
+                  onPressed: () {
+                    if (controller.formKey.currentState!.validate()) {
+                      Get.to(()=>HomePage());
+                      //controller.login();
+                    }
+                  },
+                  child: Text('identifier'.tr),
+                ),
+                const SizedBox(height: 20),
+                TextButton(
+                  onPressed: () => Get.to(PasswordResetScreen()),
+                  child: Text(
+                    'reset_password'.tr,style: TextStyle(color: Color(0xFF7590d6))
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 40),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'parent_id'.tr,
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            MaterialButton(
-              minWidth: 380,
-              color: Color(0xFFB97CFC),
-              textColor: Colors.white,
-              onPressed: () {
-                Get.to(() => HomePage());
-              },
-              child: Text('identifier'.tr),
-            ),
-            SizedBox(height: 20),
-            TextButton(
-              onPressed: () {
-                Get.to(PasswordResetScreen());
-              },
-              child: const Text(
-                'Reinstalliser Password?',
-                style: TextStyle(color: Color(0xFF7590d6)),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

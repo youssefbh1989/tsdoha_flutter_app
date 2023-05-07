@@ -39,6 +39,11 @@ dependencies:
   custom_clippers: ^2.0.0
   url_launcher: ^6.1.10
   shared_preferences: ^2.1.0
+  graphql_flutter: ^5.0.0
+  http: ^0.13.6
+  google_fonts: ^4.0.4
+  flutter_device_type: ^0.4.0
+
 
 
 dev_dependencies:
@@ -69,6 +74,36 @@ flutter:
     - assets/icon/
     - assets/sound/
     - assets/imgs/
+
+  fonts:
+    - family: serif
+      fonts:
+        - asset: fonts/Microsoft Sans Serif.ttf
+
+    - family: fg
+      fonts:
+        - asset: fonts/FranklinGothic.ttf
+
+    - family: arial
+      fonts:
+        - asset: fonts/arial.ttf
+        - asset: fonts/arial_bold.ttf
+          weight: 900
+
+
+    - family: arabic
+      fonts:
+        - asset: fonts/Simplified_Arabic.ttf
+        - asset: fonts/Simplified_Arabic_Bold.ttf
+          weight: 900
+
+    - family: neusa
+      fonts:
+        - asset: fonts/neusa.ttf
+        - asset: fonts/neusa_bold.ttf
+          weight: 900
+        - asset: fonts/neuse_light.ttf
+          weight: 100
 
   #   - images/a_dot_ham.jpeg
 
